@@ -22,9 +22,9 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-app-image .
       - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.Docker_username }} -p ${{ secrets.Docker_password }}
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Push Docker image to Docker Hub
-        run: docker push secrets.Docker_username/my-app-image:latest
+        run: docker push ${{secrets.DOCKER_USERNAME}}/my-app-image:latest
 
   deploy:
     runs-on: ubuntu-latest
