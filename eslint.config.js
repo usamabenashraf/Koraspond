@@ -5,6 +5,6 @@ module.exports = {
     },
   },
   rules: {
-    'no-undef': 'error', // Add the no-undef rule with severity 'error'
+    'no-undef': 'error', // Remove the reference to structuredClone
   },
 };
