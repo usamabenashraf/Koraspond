@@ -1,0 +1,36 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm install
+      - name: Run lint
+        run: npm run lint
+      - name: Run tests
+        run: npm test
+      - name: Build Docker image
+        run: docker build -t my-app-image .
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [ build ]  # This job depends on the successful completion of the "build" job
+    steps:
+      - uses: actions/checkout@v3
+      - name: Login to AWS ECR (Optional, if using ECR)
+        uses: aws-actions/aws-ecr-docker-login@v1
+        with:
+          aws-region: your-aws-region
+          registry-id: your-ecr-registry-id
+      - name: Push Docker image to ECR (Optional, if using ECR)
+        run: docker push your-ecr-registry-id.dkr.ecr.your-aws-region.amazonaws.com/my-app-image:latest
