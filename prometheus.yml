@@ -1,8 +1,9 @@
-global:
-  scrape_interval: 15s
-
 scrape_configs:
-  - job_name: 'my-nodejs-app'
+  - job_name: 'blackbox'
+    metrics_path: /metrics
+    params:
+      module: [http_2xx]  # specify the Blackbox module to use (e.g., http_2xx for HTTP 2xx responses)
     static_configs:
-      - targets: ['0.0.0.0:80'] # Assuming your Node.js application is running on localhost:80
-    metrics_path: '/' # The endpoint where your application exposes metrics
+      - targets: ['0.0.0.0:80']  # replace with the URL of the website you want to scrape
+    scrape_interval: 15s  # scrape interval of 15 seconds
+    scrape_timeout: 10s
