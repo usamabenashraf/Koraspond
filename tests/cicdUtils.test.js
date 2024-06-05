@@ -1,4 +1,4 @@
-const { hasBuildJob } = require('./cicdUtils');
+const { hasBuildJob } = require('../src/cicdUtils.js');
 
 test('checks if CI/CD pipeline config has a build job', () => {
   // Mock CI/CD pipeline config
