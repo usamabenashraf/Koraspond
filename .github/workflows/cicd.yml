@@ -32,9 +32,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Login to AWS EC2
+        env:
+            PRIVATE_KEY: ${{ secrets.EC2_PASSWORD }}
+            HOSTNAME: ${{secrets.EC2_HOST}}
+            USER_NAME: ${{secrets.EC2_USER}}
+      
         run: |
-         SSH_KEY_PATH=${{ secrets.EC2_PRIVATE_KEY }}
-         ssh -i "$SSH_KEY_PATH" ec2-user@ec2-3-86-194-237.compute-1.amazonaws.com
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
       - name: Run docker container
         run: |
           docker stop my-app-iamge || true
