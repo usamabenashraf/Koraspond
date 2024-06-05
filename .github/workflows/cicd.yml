@@ -53,6 +53,6 @@ jobs:
           cd prometheus-2.30.0.linux-amd64
           cp prometheus /usr/local/bin/
           cp promtool /usr/local/bin/
-          cp -r consoles/ /etc/prometheus/
-          cp -r console_libraries/ /etc/prometheus/
+          sudo cp -r consoles/ /etc/prometheus/
+          sudo cp -r console_libraries/ /etc/prometheus/
           prometheus --config.file=/path/to/prometheus.yml &
