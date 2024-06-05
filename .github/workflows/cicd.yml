@@ -32,31 +32,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Login to AWS EC2
-        run: ssh -i MIIEogIBAAKCAQEAiY0yxfgLRlRT6JHtz1BdywI7Z3xi/uOa1TDbq7bX03QWKX/F
-PO+uQCJ8IWZramu3YjmiRLaNTeWh0ghRan3SaRLpGLTZbv82BWtrqI4lVs1IAJ3s
-E8oxHXgebgn0KcRsEj+8kyT6MvyYHE2dsG8CTAKN/dhdrCcj1A+rMVn8H7t6Wpf7
-MIVu51pR8WOR4PJ694gRjWhHMythexaYDPhHZwLVHHZq6uVPBe2Gps1zHiX057mC
-/QIpQgn0HZlIeR+mnnsGbmnPqICUNjOm/TMFrtxkm38JivKczPY1lbcH3ydxVU7C
-UcJftvl5ut8Q/fLh0mlopOLj+WciVQFKh9gjVwIDAQABAoIBADLLQmmanEc/UrD6
-WnAJBGm4DEm9xCzNzdpWLXhuj6qVHq36cdJ7y8QBOAd5c8cbud962vI2211do/EU
-g0Qo7G9CvXMTLYvwkHlV3q6ityUjrygTKR9xtctlFQ+be1+FGkdu4+sOZ5o2btFc
-1BNYGugItXh80rKEzZU8qAIUcachoGSzVQmY+3iPt3wNV5Zn+q8UIvgsIU1xb/Hx
-KTGFrDVPADY+FPIoq30Ma0W2Sca1hGGTDc8dO3iUbCCYOysTBwlFYmwEbaKkBHkQ
-cju2i+JLtzZQ2s1k+Dp3kfLAx5E85JD8QAxm2QpB4Kl6T0rMa7TrmO5cbZ/NKDnm
-h6Y4arkCgYEAxE03Vg2EYbOXG/2CkUjXDcDWRpe2rYUXBQv8PsihHumVhd9uAhom
-7qFMkOiZfJmY6RjLsbY2yWvlHqKsYNo4ibzqFkYMfs6tIqt57RR6SQRHCfn2zj0Y
-/En0NSQXz3q79lgdvhrMY414s7DLCcRpagdV6ZnzDCCbPQd6tPWNWr0CgYEAs2IU
-Pg3buzzOCBlhSVTowbXwqGXc0/AfB73t+5n4rXpLLdysjtoDnR/yP8Giin6Xp6zf
-oNPB5pppHlTJo9VLDaVBkECp994M3uWtOEMyv67Jglc7JeGAVLRjbpcEsT8glELn
-Jj9/nJaNoyuXAiVo8hJ8S3mcinyp6yxNdPOJIaMCgYAvFG3fH6LOY+or9mMoQRYC
-4GsDx0My3qakuTkoPaoW5eLMlseljWwk816PqpmVPqljzmScHJ2LNWtgK5e4Kt5A
-eqSR7v70MtFnbUTyzWR+up3nEKJW2GRzrbD6RcvIISGPdZa8j2TRw45dWlt33jmC
-CnxaaGfYUsGoo3CUkgfy6QKBgDowR5a1kiCTodXYvck25OXpae6GVHLfgoFVZ/xk
-vtkvQXHYEpWoPOHcOg3adypr1DANEOGvr0dpsU2ofVxK1TTQ9Yqgn0ILYqtvX5hP
-nAe34CAKweIQ2zse5N472MbSTnQpm6e5k2CtKbbTbgHBNuDHhFBLW69Ery3dSib0
-1Pf3AoGANxKS5SuWmF2CDcP6smIjJ29AtH2H+3h/nDPB92J3Z2vcEZ8KqniQoGte
-jhbAm/TofJzxRv1OLXEN+obaPj5ThDBYH/xiWx9reImw9ilgpsddVwicqNY1PFqc
-Jie9uC7gnw3m4cS4HPGc9LAvkCqQhGofEGQ1NzCj+JR5gmsfxwg= ec2-user@ec2-3-86-194-237.compute-1.amazonaws.com
+        run: ssh -i ${{ secrets.EC2_PASSWORD }} ec2-user@ec2-3-86-194-237.compute-1.amazonaws.com
       - name: Run docker container
         run: |
           docker stop my-app-iamge || true
