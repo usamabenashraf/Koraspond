@@ -50,9 +50,4 @@ jobs:
             '
           curl -LO "https://github.com/prometheus/prometheus/releases/download/v2.30.0/prometheus-2.30.0.linux-amd64.tar.gz"
           tar -xvf prometheus-2.30.0.linux-amd64.tar.gz
-          cd prometheus-2.30.0.linux-amd64
-          cp prometheus /usr/local/bin/
-          cp promtool /usr/local/bin/
-          sudo cp -r consoles/ /etc/prometheus/
-          sudo cp -r console_libraries/ /etc/prometheus/
           prometheus --config.file=/path/to/prometheus.yml &
