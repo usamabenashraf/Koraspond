@@ -11,11 +11,15 @@
 - Select the EC2 instance we created, a bunch of options will appear.
 - Copy the "Public IPv4 DNS" and save it in a secret called "EC2_HOST" in github. Create another secret name "EC2_User" and save "ec2-user" in it.
 - Also copy the "Public IP address" of the EC2 instance and save it in a secret called EC2_PUBLIC_IP. It is used in the prometheus.yml and you will need to see the deployed app.
+- Click on the Security tab.
+- Click on the security group associated with your instance.
+- Edit inbound rules to allow all TCP traffic on all ports from anywhere-IPv4 0.0.0.0/0 (for testing purposes).
+- Click "save rules" button.
 
 ## CICD
-- If you push the docker build image in your own docker hub account, you will have to save the username and password of the account in "DOCKER_USERNAME" and "DOCKER_PASSWORD" secrets in github.
-- You can change the "hello Koraspond" message in index.js file to trigger the ci/cd pipeline.
-  - First the build stage runs, which installs dependenices, performs tests, builds the dockerfile and runs vulnerability scanning on the docker image and then pushes it to the docker hub.
+- For pushing the docker build image in your own docker hub account, you will have to save the username and password of the account in "DOCKER_USERNAME" and "DOCKER_PASSWORD" secrets in github.
+- You can make any change in the repo which will trigger the ci/cd pipeline.
+  - First the build stage runs, which installs dependenices, performs vulnerability tests Node.js dependencies (basic security check), builds the dockerfile and runs vulnerability scanning on the docker image and then pushes it to the docker hub.
   - After that the deploy stage runs, it connects to an ec2 instance and fetches the docker container from the docker hub and runs the contanerized application.
 - After the successful execution of the pipeline, you can find the output in "http://'ec2-public-ip':80" address.
 
