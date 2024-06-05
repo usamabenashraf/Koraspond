@@ -11,8 +11,8 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# Bind to port 3000
-EXPOSE 3000
+# Bind to port 80
+EXPOSE 80
 
 # Run the app
 CMD [ "node", "app.js" ]
