@@ -47,5 +47,5 @@ jobs:
             sudo docker rm my-app-container ||true
             sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
             sudo docker run -d -h 0.0.0.0 -p 80:80 --name my-app-container ${{ secrets.DOCKER_USERNAME }}/my-app-image:latest
-            prometheus --config.file=prometheus.yml
+            nohup prometheus --config.file=prometheus.yml &
             '
