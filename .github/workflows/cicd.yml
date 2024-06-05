@@ -37,7 +37,7 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           password: ${{ secrets.EC2_PASSWORD }}
-          script:
+          script: |
             docker stop my-app-iamge || true
             docker rm my-app-image ||true
             docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
