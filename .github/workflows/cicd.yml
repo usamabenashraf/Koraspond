@@ -41,12 +41,11 @@ jobs:
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
             sudo yum update
-            sudo yum install amazon-linux-extras
-            sudo amazon-linux-extras install docker
+            sudo yum install docker
             sudo systemctl start docker
             sudo systemctl enable docker
-            docker stop my-app-iamge || true
-            docker rm my-app-image ||true
-            docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
-            docker -d run my-app-iamge -p 3000:80 ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
+            sudo docker stop my-app-iamge || true
+            sudo docker rm my-app-image ||true
+            sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
+            sudo docker -d run my-app-iamge -p 3000:80 ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
             '
