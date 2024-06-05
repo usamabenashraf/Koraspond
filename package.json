@@ -6,7 +6,8 @@
   "scripts": { 
     "start": "node index.js",
     "lint": "eslint .",
-    "test": "jest" 
+    "lint:actions": "eslint .github/**/*.yml --config .eslintrc-actions.js"
+    "test": "jest",
   },
   "keywords": [],
   "author": "",
