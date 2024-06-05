@@ -6,7 +6,6 @@ test('checks if CI/CD pipeline config has a build job', () => {
     jobs: {
       build: { name: 'build' }
     }
-  }
   };
 
   // Test if config with build job returns true
