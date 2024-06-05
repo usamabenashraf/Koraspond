@@ -7,7 +7,7 @@
     "start": "node index.js",
     "lint": "eslint .",
     "lint:actions": "eslint .github/**/*.yml --config .eslintrc-actions.js",
-    "test": "jest",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
