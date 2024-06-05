@@ -12,7 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "prom-client": "^13.0.0",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "jest": "^29.7.0",
