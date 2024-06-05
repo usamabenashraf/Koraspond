@@ -17,7 +17,7 @@
 - You can change the "hello Koraspond" message in index.js file to trigger the ci/cd pipeline.
   - First the build stage runs, which installs dependenices, performs tests, builds the dockerfile and the pushes it to the docker hub.
   - After that the deploy stage runs, it connects to an ec2 instance and fetches the docker container from the docker hub and runs the contanerized application.
-- After the successful execution of the pipeline, you can find the output in "http://<ec2-public-ip>:80" address.
+- After the successful execution of the pipeline, you can find the output in "http://'ec2-public-ip':80" address.
 
 # Monitoring
 metrics.js file exposes the metrics of the app on metrics endpoint. To scrap these metrices do the following:
