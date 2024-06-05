@@ -37,9 +37,11 @@ jobs:
             HOSTNAME: ${{secrets.EC2_HOST}}
             USER_NAME: ${{secrets.EC2_USER}}
       
-        run: ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
-          docker stop my-app-iamge || true
-          docker rm my-app-image ||true
-          docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
-          docker -d run my-app-iamge -p 3000:80 ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
-          '
+        run: |
+          echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
+          ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            docker stop my-app-iamge || true
+            docker rm my-app-image ||true
+            docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
+            docker -d run my-app-iamge -p 3000:80 ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
+            '
