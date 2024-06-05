@@ -17,6 +17,8 @@ jobs:
         run: npm install
       #- name: Run lint
       #  run: npm run lint
+      - name: Lint CI/CD pipeline files
+        run: npm run lint:github-actions
       - name: Run tests
         run: npm test
       - name: Build Docker image
