@@ -30,8 +30,11 @@ Any change made in the repo will trigger the ci/cd pipeline.
 - Metrics of the app can be seen at "http://'ec2-public-ip':80/metrics"
 - The metrics can be scrapped as well by using promethius, at "http://'ec2-public-ip':9090"
 
+### App
+App can be found in `App` folder, it is a simple calculator app.
+
 ### Monitoring
-`metrics.js` file which exposes the metrics of the app on metrics endpoint. To scrap these metrices we can do the following steps:
+`metrics.js` file which exposes the metrics of the app on `metrics` endpoint. To scrap these metrices we can do the following steps:
 - Create the prometheus.yml file with the following content:
   ```
   scrape_configs:
