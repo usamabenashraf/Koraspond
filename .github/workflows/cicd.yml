@@ -48,4 +48,11 @@ jobs:
             sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
             sudo docker run -d -h 0.0.0.0 -p 80:80 --name my-app-container ${{ secrets.DOCKER_USERNAME }}/my-app-image:latest
             '
-          prometheus --config.file=prometheus.yml
+          curl -LO "https://github.com/prometheus/prometheus/releases/download/v2.30.0/prometheus-2.30.0.linux-amd64.tar.gz"
+          tar -xvf prometheus-2.30.0.linux-amd64.tar.gz
+          cd prometheus-2.30.0.linux-amd64
+          cp prometheus /usr/local/bin/
+          cp promtool /usr/local/bin/
+          cp -r consoles/ /etc/prometheus/
+          cp -r console_libraries/ /etc/prometheus/
+          prometheus --config.file=/path/to/prometheus.yml &
