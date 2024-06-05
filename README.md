@@ -3,17 +3,17 @@
 - Go to you AWS account search and select EC2 service
 - Click the "Launch instance" button.
 - Under the "Key-pair (login)" section, click the "Create new key pair" option.
-- Give the key a name and click the " Create key pair" button.
-- Copy the content of the generated file and save it in a secret in github named "EC2_PASSWORD".
+- Give the key a name and click the "Create key pair" button.
+- Copy the content of the generated file and save it in a secret in github named `EC2_PASSWORD`.
 - Check mark "Allow HTTPS traffic from the internet" and "Allow HTTP traffic from the internet" options.
 - Click the launch instance button.
 - You will see a success message, click the id of the newly created instance to open it.
 - Select the EC2 instance we created, a bunch of options will appear.
-- Copy the "Public IPv4 DNS" and save it in a secret called "EC2_HOST" in github. Create another secret name "EC2_User" and save "ec2-user" in it.
+- Copy the "Public IPv4 DNS" and save it in a secret called `EC2_HOST` in github. Create another secret name `EC2_User` and save "ec2-user" in it.
 - Click on the Security tab.
 - Click on the security group associated with your instance.
-- Edit inbound rules to allow all TCP traffic on all ports from anywhere-IPv4 0.0.0.0/0 (for testing purposes).
-- Click "save rules" button.
+- Edit inbound rules to allow all TCP traffic on all ports from anywhere-IPv4 (0.0.0.0/0).
+- Click "Save rules" button.
 - Also copy the "Public IP address" of the EC2 instance and replace the target ip-address in the target field of promethius.yml file and commit the changes, keep the port 80.
 
 ## CICD
