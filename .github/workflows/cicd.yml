@@ -18,7 +18,7 @@ jobs:
       #- name: Run lint
       #  run: npm run lint
       - name: Lint GitHub Actions YAML files
-        run: npm run lint:actions
+        run: npx grunt yamllint
       - name: Run tests
         run: npm test
       - name: Build Docker image
