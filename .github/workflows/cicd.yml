@@ -31,10 +31,9 @@ jobs:
     needs: [ build ]  # This job depends on the successful completion of the "build" job
     steps:
       - uses: actions/checkout@v3
-      - name: Login to AWS ECR (Optional, if using ECR)
-        uses: aws-actions/aws-ecr-docker-login@v1
+      - name: Login to AWS EC2
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          aws-region: your-aws-region
-          registry-id: your-ecr-registry-id
-      - name: Push Docker image to ECR (Optional, if using ECR)
-        run: docker push your-ecr-registry-id.dkr.ecr.your-aws-region.amazonaws.com/my-app-image:latest
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          password: ${{ secrets.EC2_PASSWORD }}
