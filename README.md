@@ -21,9 +21,9 @@
 
 # Monitoring
 metrics.js file exposes the metrics of the app on metrics endpoint. To scrap these metrices do the following:
-- Install prometheus locally. 
-commands: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install prometheus
+- Install prometheus locally using the following commands:
+    - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    - brew install prometheus
 - Create the prometheus.yaml file with the following content:
   ```
   scrape_configs:
@@ -38,7 +38,7 @@ commands: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/
    ```
 - Start the prometheus service using the following command:
     prometheus --config.file=prometheus.yaml
-- Accessed the prometheus servive at http://localhost:9090. and use the following commands to see graphs and tables:
+- Access the prometheus service at http://localhost:9090. and use the following commands to see graphs and tables:
   ```
   http_requests_total{method="GET",status="200"}
   http_requests_total{method="GET",status="404"}
