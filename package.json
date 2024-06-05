@@ -5,6 +5,10 @@
   "main": "index.js",
   "scripts": { 
     "start": "node index.js",
+    "install-prometheus": "wget https://github.com/prometheus/prometheus/releases/download/v2.30.0/prometheus-2.30.0.linux-amd64.tar.gz && \
+                           tar xvfz prometheus-*.tar.gz && \
+                           mv prometheus-* prometheus",
+    "postinstall": "npm run install-prometheus",
     "lint": "grunt lint",
     "test": "jest"
   },
