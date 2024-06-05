@@ -6,9 +6,12 @@ const PORT = process.env.PORT || 80;
 const logger = require('./logger');
 app.use(logger);
 
+// Serve static files from the public directory
+app.use(express.static('public'));
+
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to Simple Calculator API');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/add', (req, res) => {
