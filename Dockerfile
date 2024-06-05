@@ -2,7 +2,7 @@
 FROM node:14
 
 # Create app directory
-WORKDIR ./App
+WORKDIR .
 
 # Install app dependencies
 COPY package*.json ./
@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 80
 
 # Run the app
-CMD [ "node", "index.js" ]
+CMD [ "node", "App/index.js" ]
