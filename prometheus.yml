@@ -4,6 +4,6 @@ scrape_configs:
     params:
       module: [http_2xx]  # specify the Blackbox module to use (e.g., http_2xx for HTTP 2xx responses)
     static_configs:
-      - targets: ['${{ secrets.EC2_PUBLIC_IP }}:80']  # replace with the URL of the website you want to scrape.
+      - targets: ['54.162.255.118:80']  # replace with the URL of the website you want to scrape.
     scrape_interval: 15s  # scrape interval of 15 seconds
     scrape_timeout: 10s
