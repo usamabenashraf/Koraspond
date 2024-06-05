@@ -40,6 +40,10 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOSTNAME} '
+            sudo yum update
+            sudo amazon-linux-extras install docker
+            sudo systemctl start docker
+            sudo systemctl enable docker
             docker stop my-app-iamge || true
             docker rm my-app-image ||true
             docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
