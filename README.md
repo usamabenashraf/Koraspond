@@ -12,7 +12,25 @@
 - Copy the "Public IPv4 DNS" and save it in a secret called "EC2_HOST" in github. Create another secret name "EC2_User" and save "ec2-user" in it.
 - Also copy the "Public IP address" of the EC2 instance, you will need to see the deployed app.
 
-## GitHub
+## CICD
 - If you push the docker build image in your own docker hub account, you will have to save the username and password of the account in "DOCKER_USERNAME" and "DOCKER_PASSWORD" secrets in github.
 - You can change the "hello Koraspond" message in index.js file to trigger the ci/cd pipeline.
+  - First the build stage runs, which installs dependenices, performs tests, builds the dockerfile and the pushes it to the docker hub.
+  - After that the deploy stage runs, it connects to an ec2 instance and fetches the docker container from the docker hub and runs the contanerized application.
 - After the successful execution of the pipeline, you can find the output in "http://<ec2-public-ip>:80" address.
+
+# Monitoring
+- Installed prometheus locally. 
+commands: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          brew install prometheus
+- Created the prometheus.yaml file with the following content:
+      global:
+      scrape_interval: 15s
+    
+      scrape_configs:
+        - job_name: 'my-app'
+          static_configs:
+            - targets: ['<EC2_Public_IP>:80']
+- Started the prometheus service using the following command:
+    prometheus --config.file=prometheus.yaml
+- Accessed the prometheus servive at http://localhost:9090. 
