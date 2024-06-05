@@ -10,7 +10,7 @@
 - You will see a success message, click the id of the newly created instance to open it.
 - Select the EC2 instance we created, a bunch of options will appear.
 - Copy the "Public IPv4 DNS" and save it in a secret called "EC2_HOST" in github. Create another secret name "EC2_User" and save "ec2-user" in it.
-- Also copy the "Public IP address" of the EC2 instance, you will need to see the deployed app.
+- Also copy the "Public IP address" of the EC2 instance and save it in a secret called EC2_PUBLIC_IP. It is used in the prometheus.yml and you will need to see the deployed app.
 
 ## CICD
 - If you push the docker build image in your own docker hub account, you will have to save the username and password of the account in "DOCKER_USERNAME" and "DOCKER_PASSWORD" secrets in github.
@@ -24,7 +24,7 @@ metrics.js file exposes the metrics of the app on metrics endpoint. To scrap the
 - Install prometheus locally using the following commands:
     - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     - brew install prometheus
-- Create the prometheus.yaml file with the following content:
+- Create the prometheus.yml file with the following content:
   ```
   scrape_configs:
     - job_name: 'blackbox'
@@ -37,7 +37,7 @@ metrics.js file exposes the metrics of the app on metrics endpoint. To scrap the
       scrape_timeout: 10s
    ```
 - Start the prometheus service using the following command:
-    prometheus --config.file=prometheus.yaml
+    prometheus --config.file=prometheus.yml
 - Access the prometheus service at http://localhost:9090. and use the following commands to see graphs and tables:
   ```
   http_requests_total{method="GET",status="200"}
