@@ -20,17 +20,26 @@
 - After the successful execution of the pipeline, you can find the output in "http://<ec2-public-ip>:80" address.
 
 # Monitoring
-- Installed prometheus locally. 
+metrics.js file exposes the metrics of the app on metrics endpoint. To scrap these metrices do the following:
+- Install prometheus locally. 
 commands: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
           brew install prometheus
-- Created the prometheus.yaml file with the following content:
-      global:
-      scrape_interval: 15s
-    
-      scrape_configs:
-        - job_name: 'my-app'
-          static_configs:
-            - targets: ['<EC2_Public_IP>:80']
-- Started the prometheus service using the following command:
+- Create the prometheus.yaml file with the following content:
+  ```
+  scrape_configs:
+    - job_name: 'blackbox'
+      metrics_path: /metrics
+      params:
+        module: [http_2xx]  # specify the Blackbox module to use (e.g., http_2xx for HTTP 2xx responses)
+      static_configs:
+        - targets: ['<ec2-public-ip>:80']  # replace with the URL of the website you want to scrape
+      scrape_interval: 15s  # scrape interval of 15 seconds
+      scrape_timeout: 10s
+   ```
+- Start the prometheus service using the following command:
     prometheus --config.file=prometheus.yaml
-- Accessed the prometheus servive at http://localhost:9090. 
+- Accessed the prometheus servive at http://localhost:9090. and use the following commands to see graphs and tables:
+  ```
+  http_requests_total{method="GET",status="200"}
+  http_requests_total{method="GET",status="404"}
+  ```
