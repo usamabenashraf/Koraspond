@@ -43,8 +43,8 @@ jobs:
             sudo yum update -y
             sudo yum install docker -y
             sudo systemctl start docker
-            sudo docker stop my-app-iamge || true
+            sudo docker stop my-app-image || true
             sudo docker rm my-app-image ||true
             sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
-            sudo docker run -d -p 3000:80 --name my-app-container ${DOCKER_USERNAME}/my-app-image:latest
+            sudo docker run -d -p 3000:80 --name my-app-container ${{ secrets.DOCKER_USERNAME }}/my-app-image:latest
             '
