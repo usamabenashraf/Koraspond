@@ -46,5 +46,5 @@ jobs:
             sudo docker stop my-app-iamge || true
             sudo docker rm my-app-image ||true
             sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
-            sudo docker -d run my-app-iamge -p 3000:80 ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
+            sudo docker run -d -p 3000:80 --name my-app-image ${DOCKER_USERNAME}/my-app-image:latest
             '
