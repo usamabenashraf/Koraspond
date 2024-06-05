@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": { 
     "start": "node index.js",
+    "install-trivy": "npm install --save-dev aquasec/trivy",
     "lint": "grunt lint",
     "test": "jest"
   },
