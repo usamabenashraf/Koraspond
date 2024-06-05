@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": { 
     "start": "node index.js",
-    "lint": "eslint .",
-    "lint:actions": "yamllint .github/**/*.yml",
+    "lint": "grunt lint",
     "test": "jest"
   },
   "keywords": [],
@@ -16,7 +15,6 @@
     "express": "^4.19.2"
   },
   "devDependencies": {
-    "eslint": "^9.4.0",
     "jest": "^29.7.0",
     "grunt-yamllint": "^0.3.0"
   }
