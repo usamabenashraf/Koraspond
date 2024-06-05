@@ -31,7 +31,7 @@ jobs:
     needs: [ build ]  # This job depends on the successful completion of the "build" job
     steps:
       - uses: actions/checkout@v3
-      - name: Login to AWS EC2
+      - name: Deploy to AWS EC2
         env:
             PRIVATE_KEY: ${{ secrets.EC2_PASSWORD }}
             HOSTNAME: ${{secrets.EC2_HOST}}
@@ -47,5 +47,4 @@ jobs:
             sudo docker rm my-app-container ||true
             sudo docker pull ${{secrets.DOCKER_USERNAME }}/my-app-image:latest
             sudo docker run -d -h 0.0.0.0 -p 80:80 --name my-app-container ${{ secrets.DOCKER_USERNAME }}/my-app-image:latest
-            sudo docker inspect -f '\'{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}\'' my-app-container
             '
