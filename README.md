@@ -16,8 +16,9 @@
 - Edit inbound rules to allow custom TCP traffic on 9090 port from anywhere-IPv4 (0.0.0.0/0).
 > **Note:** If you do not do the above step, you will not be able to setup monitoring with prometheus.
 - Click "Save rules" button.
+- Fork this repository.
 - You will also need a docker hub username and password to fill in `DOCKER_USERNAME` and `DOCKER_PASSWORD` secrets.
-> **Note:** Without `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `EC2_HOST`, `EC2_User` and `EC2_PASSWORD`, you will not be able to execute the CI?CD pipeline.
+> **Note:** Without `DOCKER_USERNAME`, `DOCKER_PASSWORD`, `EC2_HOST`, `EC2_User` and `EC2_PASSWORD` secrets (Actions), you will not be able to execute the CI?CD pipeline.
 - Also copy the "Public IP address" of the EC2 instance and replace the target ip-address in the targets field of promethius.yml file and commit the changes, keep the port 80.
 - This will trigger the CI/CD pipeline.
 
