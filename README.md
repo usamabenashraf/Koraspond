@@ -24,7 +24,7 @@ Any change made in the repo will trigger the ci/cd pipeline.
   - The `cicd.yml` file in the `.github/workflows` directory is responsible for executing the whole pipeline.
   - First the build stage runs, which installs dependenices.
   - It also performs unit and lint tests. For lint test, it uses the `gruntfile.js` file which basically checks if the YAML files are valid or not. The unit tests checks whether the pipeline has a build stage or not. The unit test uses the files `cicdUtils.js` and `cicdUtils.test.js` files for test definitions.
-  - It then performs vulnerability tests Node.js dependencies (basic security check), builds the dockerfile and runs vulnerability scanning on the docker image and then pushes it to the docker hub.
+  - It then performs vulnerability tests on Node.js dependencies (basic security check), builds the dockerfile and runs vulnerability scanning on the docker image and then pushes it to the docker hub.
   - After that the deploy stage runs, it connects to an ec2 instance via ssh connection and fetches the docker container from the docker hub and runs the contanerized application.
 - After the successful execution of the container, you can find the application in "http://'ec2-public-ip':80" address.
 - Metrics of the app can be seen at "http://'ec2-public-ip':80/metrics"
